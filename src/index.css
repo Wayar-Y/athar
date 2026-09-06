@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bento-bg: #FBFBFA;
+    --bento-card: #FFFFFF;
+    --bento-border: rgba(0, 0, 0, 0.07);
+    --bento-border-hover: rgba(0, 0, 0, 0.13);
+    --bento-primary: #18181B;
+    --bento-secondary: #71717A;
+    --bento-muted: #F4F4F5;
+    --bento-healthy: #10B981;
+    --bento-warning: #F59E0B;
+    --bento-critical: #EF4444;
+  }
+
+  .dark {
+    --bento-bg: #121211;
+    --bento-card: #1A1A18;
+    --bento-border: rgba(255, 255, 255, 0.08);
+    --bento-border-hover: rgba(255, 255, 255, 0.15);
+    --bento-primary: #FAFAFA;
+    --bento-secondary: #A1A1AA;
+    --bento-muted: #242422;
+    --bento-healthy: #10B981;
+    --bento-warning: #F59E0B;
+    --bento-critical: #EF4444;
+  }
+
+  body {
+    font-family: 'Inter', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    background-color: var(--bento-bg);
+    color: var(--bento-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Bento Grid Design Theme Utilities - Soft, airy and pleasing to the eye */
+.bento-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02), 0 4px 16px -2px rgba(0, 0, 0, 0.025);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dark .bento-card {
+  background-color: #1A1A18;
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 16px -2px rgba(0, 0, 0, 0.25);
+}
+
+.bento-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .bento-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 6px 24px -2px rgba(0, 0, 0, 0.35);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.bg-healthy {
+  background-color: #10B981;
+}
+
+.bg-warning {
+  background-color: #F59E0B;
+}
+
+.bg-critical {
+  background-color: #EF4444;
+}
+
+.text-bento-primary {
+  color: #1A1A1A;
+}
+.dark .text-bento-primary {
+  color: #F5F5F0;
+}
+
+.text-bento-secondary {
+  color: #71716A;
+}
+.dark .text-bento-secondary {
+  color: #8E8E86;
+}
+
+.bg-bento-muted {
+  background-color: #F5F5F0;
+}
+.dark .bg-bento-muted {
+  background-color: #242420;
+}
+
+.border-bento {
+  border-color: #E5E5E1;
+}
+.dark .border-bento {
+  border-color: #2C2C27;
+}
+
+/* Accessible Font Scaling: scales all rem-based typography system-wide */
+html[data-text-size="small"] {
+  font-size: 13.5px;
+}
+
+html[data-text-size="medium"] {
+  font-size: 15.5px;
+}
+
+html[data-text-size="large"] {
+  font-size: 18px;
+}
+
+/* Layout Density Modes */
+html.density-compact .bento-card,
+html[data-density="compact"] .bento-card {
+  padding: 0.875rem !important;
+}
+
+html.density-compact table th,
+html.density-compact table td,
+html[data-density="compact"] table th,
+html[data-density="compact"] table td {
+  padding-top: 0.4rem !important;
+  padding-bottom: 0.4rem !important;
+}
+
+html.density-compact .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem !important;
+}
+
+html.density-compact .gap-6 {
+  gap: 1rem !important;
+}
+
+html.density-comfortable .bento-card {
+  padding: 1.5rem !important;
+}
+
+/* Accessibility: Reduced Motion */
+html.reduced-motion *,
+html.reduced-motion *::before,
+html.reduced-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Accessibility: High Contrast */
+html.high-contrast {
+  --bento-border: #1A1A1A;
+  --bento-border-hover: #000000;
+}
+
+html.dark.high-contrast {
+  --bento-border: #FFFFFF;
+  --bento-border-hover: #FFFFFF;
+}
+
+html.high-contrast .bento-card {
+  border-width: 2px !important;
+  border-color: #1A1A1A !important;
+}
+
+html.dark.high-contrast .bento-card {
+  border-color: #FFFFFF !important;
+}
+
+html.high-contrast button,
+html.high-contrast input,
+html.high-contrast select {
+  border-width: 2px !important;
+}
+
+.athar-primary { background: #047857; color: white; padding: .7rem 1rem; border-radius: .65rem; font-weight: 600; font-size: .875rem; }
+.athar-primary:hover { background: #065f46; }
+.athar-field { display: block; width: 100%; border: 1px solid #a3a3a3; border-radius: .5rem; padding: .65rem; background: transparent; font-size: 1rem; margin-top: .35rem; }
+.dark .athar-field option { background: #20201d; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #10b981; outline-offset: 3px; }
