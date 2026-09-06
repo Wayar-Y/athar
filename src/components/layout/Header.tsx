@@ -220,7 +220,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Notification dropdown */}
           {isNotificationOpen && (
-            <div className={`fixed sm:absolute top-16 sm:top-full mt-2 inset-x-3 sm:inset-x-auto ${isRTL ? 'sm:start-0' : 'sm:end-0'} sm:w-96 max-w-[calc(100vw-24px)] rounded-xl bg-white dark:bg-[#1B1B18] border border-[#E5E5E1] dark:border-[#2C2C27] shadow-xl overflow-hidden z-50`}>
+            <div className="fixed sm:absolute top-16 sm:top-full mt-2 inset-x-3 sm:inset-x-auto sm:end-0 sm:w-96 max-w-[calc(100vw-24px)] rounded-xl bg-white dark:bg-[#1B1B18] border border-[#E5E5E1] dark:border-[#2C2C27] shadow-xl overflow-hidden z-50">
               <div className="flex items-center justify-between px-4 py-3 border-b border-[#E5E5E1] dark:border-[#2C2C27] bg-[#F9F9F7] dark:bg-[#20201D]">
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-xs uppercase tracking-wider text-[#1A1A1A] dark:text-white">
