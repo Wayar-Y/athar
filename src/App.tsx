@@ -70,9 +70,6 @@ const AppShell: React.FC = () => {
           isMobileSidebarOpen={isMobileSidebarOpen}
         /></div>
 
-        <div role="status" className="px-4 py-3 text-sm bg-amber-50 text-amber-950 dark:bg-amber-950 dark:text-amber-100">
-          {isRTL ? 'نموذج أولي — بيانات الأسطول والتنبؤات والاتصال بالأجهزة تجريبية. لا يوجد تتبع مباشر أو إرسال للورش أو رسائل خارجية.' : 'Prototype — fleet data, predictions and device connections are samples. No live tracking, workshop dispatch or external messaging is connected.'}
-        </div>
         {(storageError || !storageReady) && <div role="alert" className="p-4 bg-red-50 text-red-900">{storageError || (isRTL ? 'جارٍ تحميل السجلات المحفوظة…' : 'Loading saved records…')}</div>}
         {storageError && <button className="m-4 athar-primary self-start" onClick={()=>download('athar-recovery.json',JSON.stringify({vehicles,devices,notifications},null,2),'application/json')}>{isRTL ? 'تنزيل نسخة من السجلات الحالية قبل إعادة التحميل' : 'Download current records before reloading'}</button>}
         {/* Content Area */}
