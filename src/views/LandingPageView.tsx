@@ -32,7 +32,7 @@ export const LandingPageView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-8 py-16 sm:py-24 grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <p className="text-[#197C8C] dark:text-[#A7E6F6] font-semibold mb-5">{tr('أثر | إدارة التأجير وسجل المركبة','ATHAR | Rental management and vehicle history')}</p>
-          <h1 className="text-4xl sm:text-5xl font-bold leading-[1.3]">{tr('كل عقد تأجير، مرتبط بسجل مركبته.','Every rental, connected to its vehicle’s history.')}</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold leading-[1.3]">{tr('كل تأجير يترك أثر، وأثر يوثقه.','Every rental, connected to its vehicle’s history.')}</h1>
           <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-300">{tr('نطوّر أثر لمساعدة مكاتب تأجير السيارات على جمع العقود والفحوصات والصيانة في مكان واحد، ومتابعة حالة المركبة من التسليم حتى الإرجاع.','We are developing Athar to help car rental offices bring contracts, inspections and maintenance together, and follow vehicle condition from handoff to return.')}</p>
           <button onClick={enter} className="athar-primary mt-8 inline-flex gap-3 items-center">{tr('استعرض رحلة التأجير','Explore the rental workflow')}<Arrow size={19}/></button>
           <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400">{tr('نموذج أولي ببيانات تجريبية. لا توجد مركبات متصلة مباشرة في هذه النسخة.','Prototype with sample data. This version has no live vehicle connection.')}</p>
