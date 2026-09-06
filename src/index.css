@@ -188,8 +188,18 @@ html.high-contrast select {
   border-width: 2px !important;
 }
 
-.athar-primary { background: #047857; color: white; padding: .7rem 1rem; border-radius: .65rem; font-weight: 600; font-size: .875rem; }
-.athar-primary:hover { background: #065f46; }
+.athar-primary {
+  background: #197C8C;
+  color: white;
+  padding: .7rem 1rem;
+  border-radius: .65rem;
+  font-weight: 600;
+  font-size: .875rem;
+}
+
+.athar-primary:hover {
+  background: #146675;
+}
 .athar-field { display: block; width: 100%; border: 1px solid #a3a3a3; border-radius: .5rem; padding: .65rem; background: transparent; font-size: 1rem; margin-top: .35rem; }
 .dark .athar-field option { background: #20201d; }
-button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #10b981; outline-offset: 3px; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #197C8C; outline-offset: 3px; }
