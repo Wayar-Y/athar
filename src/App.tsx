@@ -74,9 +74,7 @@ const AppShell: React.FC = () => {
           {isRTL ? 'نموذج أولي — بيانات الأسطول والتنبؤات والاتصال بالأجهزة تجريبية. لا يوجد تتبع مباشر أو إرسال للورش أو رسائل خارجية.' : 'Prototype — fleet data, predictions and device connections are samples. No live tracking, workshop dispatch or external messaging is connected.'}
         </div>
         {(storageError || !storageReady) && <div role="alert" className="p-4 bg-red-50 text-red-900">{storageError || (isRTL ? 'جارٍ تحميل السجلات المحفوظة…' : 'Loading saved records…')}</div>}
-        {storageReady && !storageError && <p role="status" className="px-4 pt-2 text-sm text-neutral-500">{storageSaving ? (isRTL ? 'جارٍ حفظ التغييرات…' : 'Saving changes…') : (browserStorage ? (isRTL ? 'السجلات محفوظة في هذا المتصفح فقط' : 'Records saved in this browser only') : (isRTL ? 'السجلات محفوظة على الخادم المحلي' : 'Records saved on the local server'))}</p>}
         {storageError && <button className="m-4 athar-primary self-start" onClick={()=>download('athar-recovery.json',JSON.stringify({vehicles,devices,notifications},null,2),'application/json')}>{isRTL ? 'تنزيل نسخة من السجلات الحالية قبل إعادة التحميل' : 'Download current records before reloading'}</button>}
-        {browserStorage && <p className="px-4 pt-2 text-sm text-neutral-500">{isRTL ? 'نسخة عرض: لكل زائر بيانات مستقلة. لا تتزامن البيانات بين الأجهزة، وقد تُحذف عند مسح بيانات المتصفح. استخدم بيانات تجريبية.' : 'Demo: each visitor has separate records. Data does not sync across devices and may be removed when browser data is cleared. Use sample information.'}</p>}
         {/* Content Area */}
         <main inert={!storageReady || !!storageError} className="flex-1 px-3 sm:px-6 lg:px-8 py-4 sm:py-8 max-w-7xl w-full mx-auto">
           {activeSection === 'dashboard' && <DashboardView />}
