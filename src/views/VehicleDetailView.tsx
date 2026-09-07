@@ -1,3 +1,4 @@
+import {inspectionConditionLabel, inspectionTypeLabel, inspectionNotes} from '../lib/inspectionLabels';
 import React, { useState } from 'react';
 import { 
   ArrowLeft, 
@@ -1532,7 +1533,7 @@ export const VehicleDetailView: React.FC<VehicleDetailViewProps> = ({ vehicle, o
                         ? 'bg-blue-50 text-blue-800 dark:bg-blue-950/50 dark:text-blue-300 border border-blue-200 dark:border-blue-900'
                         : 'bg-emerald-50 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900'
                     }`}>
-                      {insp.type === 'routine' ? (isRTL ? 'فحص دوري' : 'Routine inspection') : insp.type === 'before_rental' ? t.beforeRental : t.postRental}
+                      {inspectionTypeLabel(insp.type, isRTL)}
                     </span>
                     <span className="text-xs text-[#71716A] dark:text-[#8E8E86]">
                       {insp.rentalId || '—'} • {insp.date} • {t.inspector}: <strong className="text-[#1A1A1A] dark:text-white">{insp.inspectorName}</strong>
@@ -1553,43 +1554,31 @@ export const VehicleDetailView: React.FC<VehicleDetailViewProps> = ({ vehicle, o
                   <div className="p-2.5 rounded-lg bg-[#F9F9F7] dark:bg-[#20201D] border border-[#E5E5E1] dark:border-[#2C2C27]">
                     <span className="text-[#71716A] dark:text-[#8E8E86] block text-[10px] uppercase tracking-wider">{t.exteriorCondition}</span>
                     <strong className="capitalize text-[#1A1A1A] dark:text-white">
-                      {insp.condition.exterior === 'excellent' ? (isRTL ? 'ممتازة' : 'Excellent') :
-                       insp.condition.exterior === 'good' ? (isRTL ? 'جيدة' : 'Good') :
-                       insp.condition.exterior === 'fair' ? (isRTL ? 'مقبولة' : 'Fair') :
-                       insp.condition.exterior.replace('_', ' ')}
+                      {inspectionConditionLabel('exterior', insp.condition.exterior, isRTL)}
                     </strong>
                   </div>
                   <div className="p-2.5 rounded-lg bg-[#F9F9F7] dark:bg-[#20201D] border border-[#E5E5E1] dark:border-[#2C2C27]">
                     <span className="text-[#71716A] dark:text-[#8E8E86] block text-[10px] uppercase tracking-wider">{t.interiorCondition}</span>
                     <strong className="capitalize text-[#1A1A1A] dark:text-white">
-                      {insp.condition.interior === 'excellent' ? (isRTL ? 'ممتازة' : 'Excellent') :
-                       insp.condition.interior === 'good' ? (isRTL ? 'جيدة' : 'Good') :
-                       insp.condition.interior === 'fair' ? (isRTL ? 'مقبولة' : 'Fair') :
-                       insp.condition.interior.replace('_', ' ')}
+                      {inspectionConditionLabel('interior', insp.condition.interior, isRTL)}
                     </strong>
                   </div>
                   <div className="p-2.5 rounded-lg bg-[#F9F9F7] dark:bg-[#20201D] border border-[#E5E5E1] dark:border-[#2C2C27]">
                     <span className="text-[#71716A] dark:text-[#8E8E86] block text-[10px] uppercase tracking-wider">{t.tiresCondition}</span>
                     <strong className="capitalize text-[#1A1A1A] dark:text-white">
-                      {insp.condition.tires === 'excellent' ? (isRTL ? 'ممتازة' : 'Excellent') :
-                       insp.condition.tires === 'good' ? (isRTL ? 'جيدة' : 'Good') :
-                       insp.condition.tires === 'fair' ? (isRTL ? 'مقبولة' : 'Fair') :
-                       insp.condition.tires.replace('_', ' ')}
+                      {inspectionConditionLabel('tires', insp.condition.tires, isRTL)}
                     </strong>
                   </div>
                   <div className="p-2.5 rounded-lg bg-[#F9F9F7] dark:bg-[#20201D] border border-[#E5E5E1] dark:border-[#2C2C27]">
                     <span className="text-[#71716A] dark:text-[#8E8E86] block text-[10px] uppercase tracking-wider">{t.lightsCondition}</span>
                     <strong className="capitalize text-[#1A1A1A] dark:text-white">
-                      {insp.condition.lights === 'excellent' ? (isRTL ? 'ممتازة' : 'Excellent') :
-                       insp.condition.lights === 'good' ? (isRTL ? 'جيدة' : 'Good') :
-                       insp.condition.lights === 'fair' ? (isRTL ? 'مقبولة' : 'Fair') :
-                       insp.condition.lights.replace('_', ' ')}
+                      {inspectionConditionLabel('lights', insp.condition.lights, isRTL)}
                     </strong>
                   </div>
                 </div>
 
                 <p className="text-xs text-[#71716A] dark:text-[#8E8E86] pt-1">
-                  {isRTL ? insp.notesAr : insp.notes}
+                  {inspectionNotes(insp, isRTL)}
                 </p>
               </div>
             ))
