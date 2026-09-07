@@ -1,3 +1,4 @@
+import {rentalStatusLabel} from '../../lib/inspectionLabels';
 import {csv,download,printReport} from '../../lib/export';
 import {contractsFor,compareRental} from '../../lib/rental';
 import React, { useState } from 'react';
@@ -29,8 +30,11 @@ export const ReportExportModal: React.FC = () => {
       if (selectedReportType === 'faults') rows = [['Plate / اللوحة','Code / الكود','Description / الوصف','Severity / الشدة','First detected / أول رصد','Status / الحالة'],...scope.flatMap(v=>[...v.activeFaults,...v.resolvedFaults].map(f=>[v.plateNumber,f.code,isRTL?f.titleAr:f.title,f.severity,f.firstDetected,f.status]))];
       if (selectedReportType === 'maintenance') rows = [['Plate / اللوحة','Service / الخدمة','Status / الحالة','Due / الاستحقاق','Cost SAR / التكلفة'],...scope.flatMap(v=>v.maintenanceList.map(m=>[v.plateNumber,isRTL?m.titleAr:m.title,m.status,m.dueDateOrMileage,m.estimatedCost]))];
       if (selectedReportType === 'ai_risk') rows = [['Plate / اللوحة','Sample prediction / تنبؤ تجريبي','Sample probability / احتمال تجريبي','Action / الإجراء'],...scope.flatMap(v=>v.aiPredictions.map(p=>[v.plateNumber,isRTL?p.titleAr:p.title,p.probabilityPercent,isRTL?p.recommendedActionAr:p.recommendedAction]))];
-      if (selectedReportType === 'rental') rows = [['Plate / اللوحة','Contract / العقد','Renter / المستأجر','Status / الحالة','Distance km / المسافة','Fuel delta / تغير الوقود','New codes / أكواد جديدة'],...scope.flatMap(v=>contractsFor(v).map(c=>{const d=compareRental(v,c.id);return [v.plateNumber,c.id,c.renterName,c.status,d.distance??'Missing inspection / فحص ناقص',d.fuelDelta??'—',d.newFaults.join(', ')];}))];
-      if (format === 'pdf') printReport(`Athar — ${selectedReportType}`, rows, isRTL);
+      if (selectedReportType === 'rental') rows = [
+        isRTL ? ['اللوحة','العقد','المستأجر','الحالة','المسافة (km)','تغير الوقود (%)','أكواد جديدة'] : ['Plate','Contract','Renter','Status','Distance (km)','Fuel change (%)','New codes'],
+        ...scope.flatMap(v=>contractsFor(v).map(c=>{const d=compareRental(v,c.id);return [isRTL ? v.plateNumberAr : v.plateNumber,c.id,c.renterName,rentalStatusLabel(c.status,isRTL),d.distance??(isRTL ? 'فحص ناقص' : 'Missing inspection'),d.fuelDelta??'—',d.newFaults.join(', ')];}))
+      ];
+      if (format === 'pdf') printReport(isRTL ? `أثر — ${{health:'صحة الأسطول',faults:'الأعطال',maintenance:'الصيانة',ai_risk:'المخاطر',rental:'مقارنة فحوصات التأجير'}[selectedReportType]}` : `Athar — ${selectedReportType}`, rows, isRTL);
       else download(`athar-${selectedReportType}.csv`,csv(rows));
       setExportSuccess(true);
     } catch (error) { window.alert((error as Error).message); }
